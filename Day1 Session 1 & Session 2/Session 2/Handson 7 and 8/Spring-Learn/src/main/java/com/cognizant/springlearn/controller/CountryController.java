@@ -10,6 +10,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cognizant.springlearn.Country;
@@ -21,10 +22,17 @@ import com.cognizant.springlearn.service.CountryService;
 public class CountryController {
 	private static final Logger LOGGER = LoggerFactory.getLogger(SpringLearnApplication.class);
 	
+	
 	@Autowired
 	private CountryService countryService;
 	
-	@RequestMapping("/country")
+	public CountryController() {
+		super();
+		LOGGER.info("Inside controller Constructor");
+		
+	}
+
+	@RequestMapping(value="/country",method=RequestMethod.GET)
 	public Country getCountryIndia() {
 		LOGGER.info("Inside getCountryIndia");
 		@SuppressWarnings("resource")
@@ -55,11 +63,11 @@ public class CountryController {
 		return countryService.getCountry(code);
 	}
 
-	public CountryController() {
-		super();
-		LOGGER.info("Inside Country Controller Constructor");
-		
-	}
+//	public CountryController() {
+//		super();
+//		LOGGER.info("Inside Country Controller Constructor");
+//		
+//	}
 	
 
 }
